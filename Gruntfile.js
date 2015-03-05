@@ -5,12 +5,12 @@ module.exports = function(grunt) {
 
     concat: {
       client: {
-        src: ['public/client/*.js',
+        src: ['public/client/*.js'],
         dest: 'public/client/client.concat.js'
       },
 
       lib: {
-        src: ['public/lib/underscore.js', 'public/lib/jquery.js', 'public/lib/handlebars.js', 'public/lib/backbone.js'],
+        src: ['public/lib/underscore.js', 'public/lib/jquery.js', 'public/lib/handlebars.js','public/lib/backbone.js'],
         dest: 'public/lib/lib.concat.js'
       }
     },
@@ -106,12 +106,9 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', [
-    'mochaTest'
-  ]);
+  grunt.registerTask('test', ['mochaTest']);
 
-  grunt.registerTask('build', [
-  ]);
+  grunt.registerTask('build', ['concat', 'uglify']);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
@@ -123,6 +120,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    'concat', 'uglify'
   ]);
 };
