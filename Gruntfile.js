@@ -2,7 +2,17 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
     concat: {
+      client: {
+        src: ['public/client/*.js',
+        dest: 'public/client/client.concat.js'
+      },
+
+      lib: {
+        src: ['public/lib/underscore.js', 'public/lib/jquery.js', 'public/lib/handlebars.js', 'public/lib/backbone.js'],
+        dest: 'public/lib/lib.concat.js'
+      }
     },
 
     mochaTest: {
@@ -20,7 +30,14 @@ module.exports = function(grunt) {
       }
     },
 
+
+
     uglify: {
+      client: {
+        files: {
+          'public/output.min.js': ['public/client/client.concat.js']
+        }
+      }
     },
 
     jshint: {
@@ -106,7 +123,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+    'concat', 'uglify'
   ]);
-
-
 };
