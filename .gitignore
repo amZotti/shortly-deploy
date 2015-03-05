@@ -9,10 +9,12 @@ iisnode.yml
 Icon
 
 
-
-
 # Floobits
 .floo
 .floobit
 .floo
 .flooignore
+
+/db/shortly.sqlite
+/public/lib/lib.concat.js
+/public/output.min.js
